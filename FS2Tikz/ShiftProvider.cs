@@ -1,5 +1,8 @@
 namespace FS2Tikz;
 
+/// <summary>
+/// A class used to provide shift for recursive algorithms
+/// </summary>
 public class ShiftProvider {
     public int IndentLevel { get; set; }
     public int LastProvidedAbsoluteShift { get; private set; }
