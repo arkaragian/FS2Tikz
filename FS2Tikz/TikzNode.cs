@@ -24,40 +24,6 @@ public partial class TikzNode {
     /// </summary>
     public TikzStyle? Style { get; set; }
 
-    public static bool IsValidTikzNodeName(string input) {
-
-        Regex UnbracedPattern = MyRegex();
-
-        if (string.IsNullOrEmpty(input)) {
-            return false;
-        }
-
-        // Case 1: unbraced form
-        if (UnbracedPattern.IsMatch(input)) {
-            return true;
-        }
-
-        // Case 2: braced form { ... }
-        if (input.Length >= 2 && input[0] == '{' && input[^1] == '}') {
-            // Quick balance check for braces inside
-            int depth = 0;
-            for (int i = 0; i < input.Length; i++) {
-                if (input[i] == '{') {
-                    depth++;
-                } else if (input[i] == '}') {
-                    depth--;
-                    if (depth < 0) {
-                        return false;
-                    }
-                }
-            }
-
-            return depth == 0;
-        }
-
-        return false;
-    }
-
 
     public string ToTikz(int indentLevel = 0) {
         StringBuilder sb = new();
@@ -95,7 +61,4 @@ public partial class TikzNode {
 
         return sb.ToString();
     }
-
-    [GeneratedRegex(@"^[A-Za-z0-9:._-]+$", RegexOptions.Compiled)]
-    private static partial Regex MyRegex();
 }

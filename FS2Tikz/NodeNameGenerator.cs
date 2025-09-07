@@ -1,5 +1,8 @@
 namespace FS2Tikz;
 
+/// <summary>
+/// A class that creates node names sequentially.
+/// </summary>
 public class NodeNameGenerator {
     private int _sequence;
 
@@ -11,7 +14,7 @@ public class NodeNameGenerator {
             return $"node-{_sequence++}";
         }
 
-        bool isValid = TikzNode.IsValidTikzNodeName(hint);
+        bool isValid = TikzUtils.IsValidTikzNodeName(hint);
 
         if (isValid) {
             return $"{hint}-{_sequence++}";

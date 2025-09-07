@@ -59,7 +59,7 @@ public class TikzStyle {
             ],
             Pairs = [
                 new KeyValuePair<string,string>("align","center"),
-                new KeyValuePair<string,string>("fill","yellow!10"),
+                new KeyValuePair<string,string>("fill","yellow!20"),
                 new KeyValuePair<string,string>("minimum width","6cm"),
             ]
         };

@@ -7,7 +7,7 @@ public class TikzPicture {
     public List<TikzNode> Nodes { get; set; }
     public List<TikzLine> Lines { get; set; }
     private readonly Dictionary<string, TikzPictureStyle> _FileStyleMap;
-    private NodeNameGenerator _nameGenerator;
+    private readonly NodeNameGenerator _nameGenerator;
 
     public TikzPicture() {
         _nameGenerator = new();
@@ -18,42 +18,44 @@ public class TikzPicture {
         _FileStyleMap = [];
 
 
-        TikzPictureStyle dirStyle = new() {
-            Name = "directory",
-            Style = TikzStyle.DirectoryStyle()
-        };
-
-        TikzPictureStyle cssolution = new() {
-            Name = "cssolution",
-            Style = TikzStyle.CSSolutionStyle()
-        };
-
-        TikzPictureStyle csproject = new() {
-            Name = "csproject",
-            Style = TikzStyle.CSProjectStyle()
-        };
-
-        TikzPictureStyle csfile = new() {
-            Name = "csfile",
-            Style = TikzStyle.CSFileStyle()
-        };
-
-
-        TikzPictureStyle @file = new() {
-            Name = "file",
-            Style = TikzStyle.GenericFileStyle()
-        };
-
-
+        TikzPictureStyle dirStyle = TikzPictureStyle.DirectoryStyle();
         PictureStyles.Add(dirStyle);
-        PictureStyles.Add(cssolution);
-        PictureStyles.Add(csproject);
-        PictureStyles.Add(csfile);
+
+        TikzPictureStyle @file = TikzPictureStyle.GenericFileStyle();
         PictureStyles.Add(@file);
 
+        TikzPictureStyle cssolution = TikzPictureStyle.CSSolutionStyle();
+        PictureStyles.Add(cssolution);
         _FileStyleMap.Add(".sln", cssolution);
+
+        TikzPictureStyle csproject = TikzPictureStyle.CSProjectStyle();
+        PictureStyles.Add(csproject);
         _FileStyleMap.Add(".csproj", csproject);
+
+
+        TikzPictureStyle csfile = TikzPictureStyle.CSFileStyle();
+        PictureStyles.Add(csfile);
         _FileStyleMap.Add(".cs", csfile);
+
+
+        TikzPictureStyle exefile = TikzPictureStyle.ExeStyle();
+        PictureStyles.Add(exefile);
+        _FileStyleMap.Add(".exe", exefile);
+        _FileStyleMap.Add(".dll", exefile);
+        _FileStyleMap.Add(".pdb", exefile);
+
+
+        TikzPictureStyle pdfstyle = TikzPictureStyle.PdfStyle();
+        PictureStyles.Add(pdfstyle);
+        _FileStyleMap.Add(".pdf", pdfstyle);
+
+
+        TikzPictureStyle jsonstyle = TikzPictureStyle.JsonStyle();
+        PictureStyles.Add(jsonstyle);
+        _FileStyleMap.Add(".json", jsonstyle);
+
+
+
 
     }
 
@@ -72,7 +74,7 @@ public class TikzPicture {
 
     public string AddNode(TikzNode node) {
         Console.WriteLine("Adding Node {0}", node.Name);
-        string newName = _nameGenerator.GenerateName(null);
+        string newName = _nameGenerator.GenerateName(node.Name);
         node.Name = newName;
         Nodes.Add(node);
         return newName;
@@ -82,14 +84,14 @@ public class TikzPicture {
         Lines.Add(line);
     }
 
-    private void Begin(StringBuilder sb) {
+    private static void Begin(StringBuilder sb) {
         _ = sb.Append("\\documentclass[tikz]{standalone}\n");
         _ = sb.Append("\\usetikzlibrary{positioning}\n");
         _ = sb.Append("\\begin{document}\n");
         _ = sb.Append("\\begin{tikzpicture}[node distance=0.6cm]\n\n");
     }
 
-    private void End(StringBuilder sb) {
+    private static void End(StringBuilder sb) {
         _ = sb.Append("\\end{tikzpicture}\n");
         _ = sb.Append("\\end{document}\n");
     }
