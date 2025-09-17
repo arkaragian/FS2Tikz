@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace FS2Tikz;
+namespace libTikz;
 
 /// <summary>
 /// A style that is applied to the complete tikz picture

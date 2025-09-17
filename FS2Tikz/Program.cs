@@ -1,4 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
+
+using libTikz;
+
 namespace FS2Tikz;
 
 

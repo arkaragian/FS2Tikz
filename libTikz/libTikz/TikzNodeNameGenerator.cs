@@ -1,4 +1,4 @@
-namespace FS2Tikz;
+namespace libTikz;
 
 /// <summary>
 /// A class that creates node names sequentially.

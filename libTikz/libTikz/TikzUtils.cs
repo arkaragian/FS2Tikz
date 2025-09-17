@@ -1,7 +1,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace FS2Tikz;
+namespace libTikz;
 
 public partial class TikzUtils {
     [GeneratedRegex(@"^[A-Za-z0-9:-]+$", RegexOptions.Compiled)]

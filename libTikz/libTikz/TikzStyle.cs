@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace FS2Tikz;
+namespace libTikz;
 
 
 public class TikzStyle {

@@ -1,10 +1,13 @@
+using libTikz;
+
 namespace FS2Tikz;
 
 public class TikzFSPictureGenerator {
 
-    readonly TikzFSPictureGeneratorSettings _settings;
+    private readonly TikzFSPictureGeneratorSettings _settings;
 
     public TikzFSPictureGenerator(TikzFSPictureGeneratorSettings settings) {
+        _settings = settings;
     }
 
     public TikzPicture? ParseFileSystem(string directory) {
@@ -18,16 +21,9 @@ public class TikzFSPictureGenerator {
 
         TikzPicture picture = new();
 
-        TikzFSPictureGeneratorSettings filters = new() {
-            ExcludeDirectories = [
-                ".git",
-                //"bin",
-                //"obj"
-            ]
-        };
         ShiftProvider sprov = new();
 
-        _ = DirectoryToTikz(rootDir, picture, filters, upstreamName: null, sprov);
+        _ = DirectoryToTikz(rootDir, picture, _settings, upstreamName: null, sprov);
 
         // _ = sb.Append("\\end{tikzpicture}\n");
         // _ = sb.Append("\\end{document}\n");
@@ -73,14 +69,12 @@ public class TikzFSPictureGenerator {
         }
 
         string newParent = picture.AddNode(node);
-        bool incrementedLevel = false;
 
 
         DirectoryInfo[] childDirectories = dir.GetDirectories();
 
         if (childDirectories.Length > 0) {
             sprov.IndentLevel++;
-            incrementedLevel = true;
             Console.WriteLine("{0} Has Subdirectories. Incrementing once. New level is {1}", dir.Name, sprov.IndentLevel);
             for (int i = 0; i < childDirectories.Length; i++) {
                 DirectoryInfo d = childDirectories[i];

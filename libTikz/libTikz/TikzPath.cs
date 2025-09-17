@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Text;
 
-namespace FS2Tikz;
+namespace libTikz;
 
 public class TikzLine {
     // \draw [-] (projectdir.south west) |-  (csproj.west);
