@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FS2Tikz", "FS2Tikz\FS2Tikz.csproj", "{9FA0EDD8-1467-42EB-A282-FD5719C2FA9B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libTikz", "libTikz", "{6B2FF09C-0BAF-4D4E-DAB0-E97AF729C55E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libTikz", "libTikz\libTikz\libTikz.csproj", "{3F5635D1-5374-4BC5-A2EE-7C1638007F1F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +31,23 @@ Global
 		{9FA0EDD8-1467-42EB-A282-FD5719C2FA9B}.Release|x64.Build.0 = Release|Any CPU
 		{9FA0EDD8-1467-42EB-A282-FD5719C2FA9B}.Release|x86.ActiveCfg = Release|Any CPU
 		{9FA0EDD8-1467-42EB-A282-FD5719C2FA9B}.Release|x86.Build.0 = Release|Any CPU
+		{3F5635D1-5374-4BC5-A2EE-7C1638007F1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F5635D1-5374-4BC5-A2EE-7C1638007F1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F5635D1-5374-4BC5-A2EE-7C1638007F1F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3F5635D1-5374-4BC5-A2EE-7C1638007F1F}.Debug|x64.Build.0 = Debug|Any CPU
+		{3F5635D1-5374-4BC5-A2EE-7C1638007F1F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3F5635D1-5374-4BC5-A2EE-7C1638007F1F}.Debug|x86.Build.0 = Debug|Any CPU
+		{3F5635D1-5374-4BC5-A2EE-7C1638007F1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F5635D1-5374-4BC5-A2EE-7C1638007F1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F5635D1-5374-4BC5-A2EE-7C1638007F1F}.Release|x64.ActiveCfg = Release|Any CPU
+		{3F5635D1-5374-4BC5-A2EE-7C1638007F1F}.Release|x64.Build.0 = Release|Any CPU
+		{3F5635D1-5374-4BC5-A2EE-7C1638007F1F}.Release|x86.ActiveCfg = Release|Any CPU
+		{3F5635D1-5374-4BC5-A2EE-7C1638007F1F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3F5635D1-5374-4BC5-A2EE-7C1638007F1F} = {6B2FF09C-0BAF-4D4E-DAB0-E97AF729C55E}
 	EndGlobalSection
 EndGlobal
