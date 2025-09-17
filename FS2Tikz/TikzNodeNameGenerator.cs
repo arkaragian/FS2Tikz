@@ -3,11 +3,8 @@ namespace FS2Tikz;
 /// <summary>
 /// A class that creates node names sequentially.
 /// </summary>
-public class NodeNameGenerator {
+public class TikzNodeNameGenerator {
     private int _sequence;
-
-    public NodeNameGenerator() {
-    }
 
     public string GenerateName(string? hint) {
         if (hint is null) {

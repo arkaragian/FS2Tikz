@@ -7,7 +7,7 @@ public class TikzPicture {
     public List<TikzNode> Nodes { get; set; }
     public List<TikzLine> Lines { get; set; }
     private readonly Dictionary<string, TikzPictureStyle> _FileStyleMap;
-    private readonly NodeNameGenerator _nameGenerator;
+    private readonly TikzNodeNameGenerator _nameGenerator;
 
     public TikzPicture() {
         _nameGenerator = new();
