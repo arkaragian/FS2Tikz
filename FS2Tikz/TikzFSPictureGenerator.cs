@@ -1,3 +1,4 @@
+using FS2Tikz.Configuration;
 using libTikz;
 
 namespace FS2Tikz;
