@@ -14,7 +14,7 @@ public class Program {
 
 
         Argument<string> dir_arg = new("directory") {
-            Description = "A JSON file that contains specific execution configuration"
+            Description = "The directory that will be indexed"
         };
 
         Argument<string> conf_arg = new("config file") {
@@ -30,12 +30,14 @@ public class Program {
         exec_dir.SetAction((ParseResult r) => ExecuteDirectory(r, dir_arg));
 
 
-        Command exec_config = new("config", "Execute Configuration");
+        Command exec_config = new("config", "Execute Configuration") {
+            conf_arg
+        };
         exec_config.SetAction((ParseResult r) => ExecuteConfiguration(r, conf_arg));
 
         RootCommand rootCommand = new("Filesystem to Tikz");
 
-        //rootCommand.Subcommands.Add(exec_config);
+        rootCommand.Subcommands.Add(exec_config);
         rootCommand.Subcommands.Add(exec_dir);
 
         return rootCommand.Parse(args).Invoke();
@@ -61,24 +63,28 @@ public class Program {
             return 1;
         }
 
-        if (settings.Directtory is null) {
+        if (settings.InputDirectory is null) {
             Console.WriteLine("Settings do not point at a directory. Please define the Directory field in your JSON file. Exiting...");
             return 1;
         }
 
 
         TikzFSPictureGenerator gen = new(settings);
-        TikzPicture? pic = gen.ParseFileSystem(settings.Directtory);
+        TikzPicture? pic = gen.ParseFileSystem(settings.InputDirectory);
 
         if (pic is null) {
             Console.WriteLine("No Picure was produced");
             return 0;
         }
 
-        string code = pic.ToTikz();
+        //string code = pic.ToTikz();
+        string out1 = settings.OutputDirectory is null ? settings.OutputFileName : Path.Combine(settings.OutputDirectory, settings.OutputFileName);
+        string out2 = settings.OutputDirectory is null ? settings.OutputWrapperName : Path.Combine(settings.OutputDirectory, settings.OutputWrapperName);
 
-        using StreamWriter outputFile = new("out.tex");
-        outputFile.Write(code);
+        pic.WriteTikzFiles(out1, out2);
+
+        // using StreamWriter outputFile = new("out.tex");
+        // outputFile.Write(code);
 
         return 0;
     }
@@ -95,6 +101,8 @@ public class Program {
 
 
         TikzFSPictureGeneratorSettings settings = new() {
+            OutputFileName = "out.tex",
+            OutputWrapperName = "out_wrapper.tex",
             ExcludeDirectories = [
                 ".git",
                 //"bin",
@@ -110,10 +118,13 @@ public class Program {
             return 0;
         }
 
-        string code = pic.ToTikz();
 
-        using StreamWriter outputFile = new("out.tex");
-        outputFile.Write(code);
+        pic.WriteTikzFiles("out.tex", "out_wrapper.tex");
+
+        // string code = pic.ToTikz();
+        //
+        // using StreamWriter outputFile = new("out.tex");
+        // outputFile.Write(code);
 
         return 0;
     }

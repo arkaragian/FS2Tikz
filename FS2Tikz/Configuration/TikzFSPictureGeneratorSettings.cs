@@ -4,7 +4,22 @@ public class TikzFSPictureGeneratorSettings {
     /// <summary>
     /// The directory that will be indexed
     /// </summary>
-    public string? Directtory { get; set; }
+    public string? InputDirectory { get; set; }
+
+    /// <summary>
+    /// The output location for the files
+    /// </summary>
+    public string? OutputDirectory { get; set; }
+
+    /// <summary>
+    /// The name of the standalone file
+    /// </summary>
+    public required string OutputFileName { get; set; }
+
+    /// <summary>
+    /// The name of the standalone wrapper file
+    /// </summary>
+    public required string OutputWrapperName { get; set; }
 
     /// <summary>
     /// Files with those names will be excluded from the generated tree

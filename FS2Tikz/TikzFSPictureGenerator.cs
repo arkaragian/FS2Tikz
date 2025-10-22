@@ -26,14 +26,6 @@ public class TikzFSPictureGenerator {
 
         _ = DirectoryToTikz(rootDir, picture, _settings, upstreamName: null, sprov);
 
-        // _ = sb.Append("\\end{tikzpicture}\n");
-        // _ = sb.Append("\\end{document}\n");
-
-        string code = picture.ToTikz();
-
-        using StreamWriter outputFile = new("out.tex");
-        outputFile.Write(code);
-
         return picture;
     }
 
@@ -145,9 +137,11 @@ public class TikzFSPictureGenerator {
 
 
     public static TikzNode FileToTikz(FileInfo f, TikzPicture picture, string parent, ShiftProvider sprov) {
+        TikzPictureStyle? a = picture.GetStyle(f);
         TikzNode node = new() {
             Name = f.Name,
-            GlobalStyleName = picture.HasStyle(f.Extension) ? picture.GetStyle(f.Extension).Name : "file",
+            //GlobalStyleName = picture.HasStyle(f.Extension) ? picture.GetStyle(f.Extension).Name : "file",
+            GlobalStyleName = a is not null ? a.Name : "file",
             Content = TikzUtils.NormalizeNodeContent(f.Name),
             Style = new TikzStyle {
                 Pairs = [

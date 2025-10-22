@@ -1,0 +1,9 @@
+{
+    "InputDirectory": "C:/Users/akar",
+    "ExcludeFiles" : ]
+        ".git"
+    ],
+    "ExcludeDirectories" : ]
+        ".git"
+    ],
+}
