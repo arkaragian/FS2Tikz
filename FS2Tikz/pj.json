@@ -1,0 +1,13 @@
+{
+    "InputDirectory": "D:/source/repos/RDOrganisation/RD_ProjectStructure/images/fs2tikz/ProjectRoot",
+    "OutputDirectory": "D:/source/repos/RDOrganisation/RD_ProjectStructure/images/",
+    "OutputFileName": "project-structure.tex",
+    "OutputWrapperName": "project-structure-wrapper.tex",
+    "ExcludeFiles" : [
+        ".git",
+        ".gitkeep"
+    ],
+    "ExcludeDirectories" : [
+        ".git"
+    ]
+}

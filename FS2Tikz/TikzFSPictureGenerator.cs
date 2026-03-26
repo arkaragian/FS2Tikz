@@ -109,6 +109,13 @@ public class TikzFSPictureGenerator {
             //     incrementedLevel = true;
             // }
             for (int i = 0; i < files.Length; i++) {
+
+                if (filters.ExcludeFiles is not null && filters.ExcludeFiles.Contains(files[i].Name)) {
+                    Console.WriteLine("Detected file {0}. Excluding...", files[i].Name);
+                    continue;
+                }
+
+
                 TikzNode fileNode = FileToTikz(files[i], picture, newParent, sprov);
                 newParent = fileNode.Name;
 
